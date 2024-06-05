@@ -1,0 +1,647 @@
+\documentclass[12pt, a4 paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{titlesec}
+\captionsetup[figure]{font=small,labelfont=small}
+\usepackage[document]{ragged2e}
+\usepackage{longtable}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{setspace}
+\geometry{left = 1in, right = 1in, top = 1in, bottom = 1in}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+{\bfseries\filcenter}
+{\Large \uppercase \chaptername~\thechapter} 
+{1ex}
+{\Large\thispagestyle{plain}}
+
+
+\begin{document}
+\begin{spacing}{1.5}
+\reversemarginpar
+\fontsize{12pt}{14pt}
+\pagenumbering{gobble}
+\let\mtcontentsname\contentsname
+\renewcommand\contentsname{\MakeUppercase\mtcontentsname}
+\begin{titlepage}
+	
+	%\newcommand{\HRule}{\rule{\linewidth}{0.5cm}} % Defines a new command for the horizontal lines, change thickness here
+	
+	\centering % Center everything on the page
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	% Name of your university/college
+	
+	%\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	%\HRule \\[0.4cm]
+	{ \Large \bfseries \begin{center}
+			NON-ORTHOGONAL MULTIPLE ACCESS FOR 5G AND BEYOND \end{center}} %[2.0cm] % Title of your document
+	%\HRule \\[1.5cm]
+	\vspace{1.0 cm}
+	{\textbf{Seminar report}}\\
+	\vspace{0.6cm}
+	{\textit{Submitted by}\\
+		\vspace{0.6cm}
+		{\bf PRANITH KUMAR BOGE}\\(B201032EC)\\
+		\vspace{0.6cm}
+		{\it In partial fulfillment for the award of the Degree of}\\
+		\vspace{1.0cm}
+		{\bf BACHELOR OF TECHNOLOGY\\IN\\ELECTRONICS AND COMMUNICATION ENGINEERING}\\
+		
+		%{\large(Telecommunication)}
+		\vspace{1.5cm}
+		%----------------------------------------------------------------------------------------
+		%	AUTHOR SECTION
+		%----------------------------------------------------------------------------------------
+		
+		
+		
+		% If you don't want a supervisor, uncomment the two lines below and remove the section above
+		%\Large \emph{Author:}\\
+		%John \textsc{Smith}\\[3cm] % Your name
+		
+		%----------------------------------------------------------------------------------------
+		%	DATE SECTION
+		%----------------------------------------------------------------------------------------
+		
+		%{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+		
+		%----------------------------------------------------------------------------------------
+		%	LOGO SECTION
+		%----------------------------------------------------------------------------------------
+		
+		
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.25\linewidth]{National_Institute_of_Technology,_Calicut_Logo.jpg}
+			%\caption{}
+			\label{fig:logo}
+		\end{figure}
+		% Include a department/university logo - this will require the graphicx package
+		\vspace{0.4cm}
+		{\textbf{DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING\\}}
+		{NATIONAL INSTITUTE OF TECHNOLOGY, CALICUT}\\
+		{ NIT CAMPUS P.O., CALICUT}\\
+		KERALA, INDIA 673601. }
+	
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Fill the rest of the page with whitespace
+	
+\end{titlepage}
+
+
+\pagenumbering{roman}
+
+\begin{center}
+	{\textbf{NATIONAL INSTITUTE OF TECHNOLOGY, CALICUT\\}}
+	{DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING}\\
+	\vspace{1 cm }
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.25\linewidth]{National_Institute_of_Technology,_Calicut_Logo.jpg}
+		%\caption{}
+		\label{fig:logo}
+	\end{figure}
+	\vspace{1 cm }
+	
+	{\large\bf CERTIFICATE}
+\end{center}
+
+\begin{doublespace}
+	\justify
+	{\fontsize{12}{15} \itshape This is to certify that the seminar report entitled "\textbf{NON-ORTHOGONAL MULTIPLE ACCESS FOR 5G AND BEYOND}" is a bonafide record of the seminar presented by \textbf{\normalsize  PRANITH KUMAR BOGE} (B201032EC) as part of the course \textbf{EC4092D-Seminar} at the National Institute of Technology, Calicut towards partial fulfillment of the requirements for the award of Degree of Bachelor of Technology in Electronics and Communication Engineering.}
+\end{doublespace}
+\vspace{0.1in}
+\begin{flushleft}
+	Place: Calicut\\
+	Date: 30 - 10 - 2023
+\end{flushleft}
+
+\begin{flushright}
+	{
+		\textbf{Mr. Suresh R}\\
+		\vspace{0.1cm}
+		\textit{(Seminar Coordinator)}
+	} 
+\end{flushright}
+\vspace{0.25in}
+
+\begin{flushright}
+	{
+		\textbf{Dr. Jaikumar M G}\\
+		\vspace{0.1cm}
+		\textit{(Head of the Department)}
+	} 
+\end{flushright}
+
+\vspace{0.25in}
+
+
+\chapter*{\centering ACKNOWLEGEMENT}
+\justify
+I am extremely grateful to Dr.R SURESH, Associate Professor, Department of Electronics and Communication Engineering, National Institute of Technology, Calicut, for all the necessary guidance, help , advice and suggestions to make this work a success. I express my sincere thanks to my faculty advisor Dr.LALIT KUMAR , Assistant Professor , for his valuable support and encouragement. I express my gratitude to Dr. JAIKUMAR M G, Head of Department, Department of ECE, for his wholehearted cooperation and encouragement. I also acknowledge my gratitude to other faculty members in the Department of Electronics and Communication Engineering, my family, and my friends for their wholehearted cooperation and encouragement.
+
+%\clearpage
+
+
+
+\begin{center}
+
+\chapter*{\centering \uppercase{Abstract} }
+\end{center}
+\justify 
+
+\par 5G is the next generation of wireless technology that promises to be much faster and more reliable than 4G. To achieve this, 5G needs to be able to handle a lot more devices at once. One way to do this is with a technique called Non-Orthogonal Multiple Access (NOMA).
+NOMA works by allowing multiple devices to share the same frequency band. This is different from how 4G works, which uses a technique called Orthogonal Multiple Access (OMA). OMA requires devices to use different frequency bands, which can waste a lot of spectrum.
+NOMA is more efficient than OMA because it allows devices to use the same spectrum more effectively. This means that 5G networks can support more devices and provide better performance.
+In addition to being more efficient, NOMA is also more flexible than OMA. This means that it can be used to support a wider range of devices, including low-power devices like sensors.
+NOMA is a key technology for 5G, and it is expected to play a major role in the future of wireless communication.
+In this paper, I take a close look at how NOMA is helping the world of 5G networks. I'll also compare how well OMA and NOMA work, showing why NOMA is a better solution for our growing need for fast and reliable wireless communication.
+
+
+
+% \clearpage
+%\chapter*{\centering ACKNOWLEGEMENT}
+%\chapter*{\centering ACKNOWLEGEMENT}
+%\justify
+%I am extremely grateful to Dr. ..................., Professor, Department of Electronics and Communication Engineering, National Institute of Technology, Calicut, for all the necessary guidance, help and advice extended to me. I have great pleasure in expressing my gratitude and obligations to Mr......................., Associate Professor, Department of Electronics and Communication Engineering, National Institute of Technology, Calicut  for his valuable guidance, and suggestions to make this work a success. I express my sincere thanks to my faculty advisor Dr................. for his valuable support and encouragement. I express my gratitude to Dr. ........., Head of Department, Department of ECE, for his wholehearted cooperation and encouragement. I also acknowledge my gratitude to other faculty members in the Department of Electronics and Communication Engineering, my family, and my friends for their wholehearted cooperation and encouragement. Above all, I thank God Almighty, without whose help, I wouldn't have reached this far.
+%
+%\clearpage
+\tableofcontents
+
+%\listoffigures
+
+\begin{spacing}{1.5}
+	
+	\listoffigures
+	%\doublespacing
+	\addcontentsline{toc}{chapter}{\textnormal{List of Figures}}
+	% \addcontentsline{toc}{chapter}{\textnormal{LIST OF FIGURES}}
+        % \addcontentsline{toc}{chapter}{\textnormal{List of Abbreviations}}
+	\pagebreak
+	
+	
+	
+\end{spacing}
+
+
+%\chapter*{\centering  List of Abbreviations}
+\chapter*{ List of Abbreviations}
+%\chapter*{ LIST OF ABBREVIATIONS}
+\chaptermark{List of Abbreviations}
+
+\renewcommand*{\arraystretch}{1.37}
+\begin{longtable}{@{}l @{\hspace{5mm}} l }
+BS & Base Station\\
+eMBB & Enhanced Mobile Broadband\\
+FDMA & Frequency Division Multiple Access\\
+GSM & Global System for Mobile Communications\\
+LDM & Layered Division Multiplexing\\
+LTE & Long-Term Evolution\\
+MA & Multiple Access\\
+MIMO &  Multiple-Input, Multiple-Output \\
+mMTC & Massive Machine Type Communication\\
+NOMA & Non-Orthogonal Multiple Access\\
+OMA   &  Orthogonal Multiple Access \\
+SC  &  Superposition Coding \\
+SIC & Successive Interference Cancellation \\
+SNR & Signal To Noise Ratio\\
+SWIPT & Simultaneous Wireless Information and Power Transfer \\
+TDMA & Time Division Multiple Access\\
+UE & User Equipment \\
+URLLC & Ultra-Reliable Low Latency Communication\\
+
+\end{longtable}
+
+\clearpage
+
+%\chapter{1}
+
+
+
+\pagenumbering{arabic}
+
+
+
+
+%\begin{group}
+%	\centering
+%	\uppercase{Introduction}
+%\end{group}
+%\centering
+\chapter{\uppercase{Introduction}}
+
+\justify
+
+Mobile technology has evolved through the generations, and 5G represents a significant leap forward. It's not just about faster internet; it's about shaping the future of connectivity. 5G brings enhanced mobile broadband (eMBB) to the table, providing blazing-fast internet for smartphones and data-hungry applications. It's like upgrading from regular broadband to ultra-fast fiber-optic internet for your mobile devices. Moreover, 5G introduces massive machine type communication (mMTC), which is all about connecting vast numbers of devices. Think about the countless sensors in smart cities or on farms that need to send data efficiently. With 5G, this is made possible with narrowband internet access that's designed for low-power devices.
+
+For mission-critical applications, such as remote surgery, industrial automation, or even autonomous vehicles, there's ultra-reliable low latency communication (URLLC). URLLC ensures data is delivered quickly and reliably, even in life-or-death situations. It's not just about speed and connectivity; 5G also focuses on energy efficiency, which is crucial for reducing our carbon footprint and supporting sustainable technologies. This technology is finding its way into various sectors, including education and manufacturing, where it's addressing the needs of today and preparing us for the future.
+
+One of the exciting aspects of 5G is millimeter wave technology. It operates in frequency bands ranging from 24 GHz to 100 GHz. Now, why does this matter? Well, it's like upgrading from a narrow country road to a multi-lane highway. Millimeter waves allow for much faster data rates and significantly reduced lag. This is the kind of technology that makes augmented reality, virtual reality, and other data-intensive applications work seamlessly. [1]
+
+In the world of wireless communication, the ability for many users to share the same network is crucial. Two significant techniques come into play: Orthogonal Multiple Access (OMA) and Non-Orthogonal Multiple Access (NOMA).OMA has been used in earlier generations of mobile tech. It's like a well-organized library where each book is assigned its unique spot, and there's no interference. This way, multiple users can transmit data without causing problems for each other.
+
+Now, here's where NOMA steps in with its innovative approach within 5G. It allows multiple users to share resources in a more flexible way, optimizing spectral efficiency. It's like sharing a room, but with clever partitions that let everyone have their space without knocking into each other. NOMA achieves this through Power-Domain Multiplexing and Code-Domain Multiplexing. Power-Domain Multiplexing is about assigning different power levels to users, ensuring they each get their share without overwhelming the network. Code-Domain Multiplexing, on the other hand, gives each user their unique code for efficient separation.
+
+What's even more impressive is that NOMA employs strategies like Superposition Coding (SC) and Successive Interference Cancellation (SIC) to make sure that multiple messages can be sent at the same time without getting mixed up. It's like having a conversation with multiple people, and everyone knows when it's their turn to speak. [4]
+
+
+
+
+
+\clearpage
+
+\chapter{ ORTHOGONAL MULTIPLE ACCESS AND ITS TYPES}
+
+% \textbf{\large }
+Orthogonal Multiple Access (OMA) is a multiple access scheme used in wireless communication systems to allow multiple users to access a shared communication channel without causing interference. OMA divides the available bandwidth into separate, non-overlapping subchannels or time slots, each of which is allocated to a specific user or terminal. This division of resources ensures that different users can transmit their data independently without interfering with each other. OMA is the opposite of Non-Orthogonal Multiple Access (NOMA), where users share the same resources simultaneously.
+\section{\textbf{TYPES OF OMA:}}
+\textbf{Frequency Division Multiple Access (FDMA):}\\
+\textbf{Principle:} In FDMA, the available bandwidth is divided into multiple frequency bands or subchannels. Each user is allocated a specific frequency band for their communication.
+\\
+\textbf{Usage:} FDMA was primarily used in first-generation (1G) analog cellular systems.
+\\
+\textbf{Time Division Multiple Access (TDMA):}
+\\
+\textbf{Principle:} TDMA divides time into time slots, and each user is assigned one or more time slots in a repeating pattern.
+\\
+\textbf{Usage:} TDMA was widely used in second-generation (2G) digital cellular systems, such as GSM (Global System for Mobile Communications).
+\\
+\textbf{Code Division Multiple Access (CDMA):}
+\\
+\textbf{Principle:} CDMA allows multiple users to transmit over the same frequency band simultaneously. Each user is assigned a unique code, and their signals are spread over the entire bandwidth.
+\\
+\textbf{Usage:} CDMA technology was a hallmark of third-generation (3G) and later wireless networks.
+\\
+\textbf{Orthogonal Frequency Division Multiple Access (OFDMA):}
+\\
+\textbf{Principle:} OFDMA is an extension of FDMA, but it uses multiple narrow subcarriers within the allocated frequency band. Users are assigned a combination of subcarriers.
+\\
+\textbf{Usage:} OFDMA is the foundation of fourth-generation (4G) and fifth-generation (5G) cellular networks. It offers high spectral efficiency and robust performance.
+
+\section{\textbf{OFDMA}}
+
+\textbf{OFDMA (Orthogonal Frequency Division Multiple Access): }
+\\
+OFDMA is a widely used multiple access scheme in modern wireless communication systems. It builds upon the concept of FDMA but offers several advantages. Here's an in-depth look at OFDMA:
+\\
+\textbf{Subcarrier Allocation:}
+\\
+FDMA divides the available frequency spectrum into multiple subcarriers. These subcarriers are closely spaced in frequency, and each user is allocated a combination of subcarriers to transmit their data. This allocation is dynamic, meaning it can change over time to adapt to varying user needs and channel conditions.
+\\
+\textbf{Orthogonality:}
+\\
+The term "orthogonal" in OFDMA implies that the subcarriers are designed to be mutually orthogonal, meaning they do not interfere with each other. This orthogonality is achieved through careful mathematical design, ensuring that the signals on different subcarriers do not overlap in the frequency domain.
+\\
+\textbf{Flexibility:}
+\\
+OFDMA offers flexibility in resource allocation. It can adapt the number of subcarriers allocated to each user based on their requirements. Users with higher data rate demands can be assigned more subcarriers, while users with lower demands get fewer, making efficient use of available spectrum.
+\\
+\textbf{Spectral Efficiency:} OFDMA is known for its high spectral efficiency. By allocating subcarriers efficiently, it maximizes the utilization of the available bandwidth. This is one of the key reasons why OFDMA is the foundation of many modern wireless standards, including Wi-Fi and 4G/5G cellular networks.
+\\
+\textbf{Mitigating Multipath Fading:}
+\\
+OFDMA is particularly effective in dealing with multipath fading, a phenomenon in wireless communication where signals take multiple paths to reach the receiver. By using many subcarriers, OFDMA can handle multipath effects more robustly, increasing system reliability.
+\\
+\textbf{Applications:}
+\\
+OFDMA is the underlying technology in many wireless communication systems, including Wi-Fi, 4G LTE, and 5G NR (New Radio). It is used for both downlink (from the base station to the users) and uplink (from users to the base station) communications.
+
+\clearpage
+
+\chapter{COMPARISON OF NOMA AND OMA}
+
+
+\textbf{\normalsize 1) Spectral Efficiency:}
+\\
+NOMA (Non-Orthogonal Multiple Access) outshines OMA (Orthogonal Multiple Access) in terms of spectral efficiency. NOMA employs a sophisticated technique where users with diverse channel conditions share the same frequency resources. Even when users have different connection qualities, NOMA strategically manages this resource sharing. By employing Successive Interference Cancellation at the receiver side, NOMA effectively mitigates interference. In contrast, OMA allocates specific, orthogonal frequency resources to individual users, aiming to balance resources according to channel conditions. However, this balanced approach inherently limits spectral efficiency.
+\\
+\\
+\textbf{\normalsize 2) Fairness and Throughput:}
+\\
+NOMA places a strong emphasis on fairness and system throughput. It accommodates users with varying channel qualities, offering a more equitable distribution of resources and delivering higher system throughput. In the context of NOMA, various users can efficiently coexist, promoting fairness. In OMA, a different scenario unfolds, where users with better channel conditions gain priority, potentially leaving those with poorer conditions in a delayed state. Consequently, this disparity results in lower user fairness and reduced system throughput.
+\\
+\\
+\textbf{\normalsize 3) Massive Connectivity:}
+\\
+NOMA excels in accommodating a vast number of connected devices, encompassing scenarios such as the interconnection of billions of machines, industrial facilities, hospitals, and more. It offers a robust solution for the requirements of massive connectivity. Conversely, OMA is less adept at handling extensive connectivity demands and is better suited for scenarios with fewer connected devices.
+\\
+\\
+\textbf{\normalsize 4) Compatibility:}
+\\
+NOMA exhibits an advantage in terms of compatibility with existing multiple access methods. It seamlessly integrates with traditional OMA techniques, including FDMA, TDMA, CDMA, and OFDMA. This adaptability ensures that NOMA can coexist within established communication infrastructures. Moreover, NOMA presents a promising prospect for the transition to advanced technologies, such as digital television, owing to its resemblances with Layered Division Multiplexing (LDM). LDM allows multiple signals to share the same frequency while differing in power levels, rendering it compatible with NOMA.\\
+
+\begin{figure}[H]
+	\includegraphics[width=15cm]{differentiation_of_noma_oma.jpg}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Differentiation between NOMA and OMA [1]}
+	\vspace{0.3 cm}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=16cm]{powerefficiency_NOMA_OMA.jpg}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Power Efficiency of NOMA and OMA [1]}
+	\vspace{0.3 cm}
+\end{figure}
+
+
+
+\\
+\clearpage
+
+\chapter{ SUPERPOSITION CODING AND SUCCESSIVE INTERFERENCE CANCELLATION}
+
+\textbf{\large Superposition Coding:}
+\\
+Superposition coding is a key technique in wireless communication, particularly in the context of Non-Orthogonal Multiple Access (NOMA) and Multi-User Superposition Transmission (MUST). It allows multiple signals, each intended for a different user, to be transmitted on the same time-frequency resources. The key idea behind superposition coding is that the signals from different users are linearly combined and transmitted together, creating a composite signal. This composite signal is then received by all users in the network. Superposition coding is characterized by its ability to significantly increase spectral efficiency, enabling more efficient use of limited wireless resources.
+\\
+\textbf{Signal Combination:} In superposition coding, multiple signals, each intended for different users, are combined in a linear manner. The resulting composite signal contains components from all users and is transmitted over the same time and frequency resources.
+\\
+\textbf{Interference:} Superposition coding naturally introduces interference since all users are now receiving a signal that includes components meant for others. This interference is addressed through decoding at the receiver.
+\\
+\textbf{Receiver Complexity:} Receivers need to employ advanced decoding techniques to separate and recover the intended signal from the composite received signal. This decoding process is typically more complex than traditional decoding methods used in orthogonal transmission schemes.
+\\
+\textbf{Spectral Efficiency:} Superposition coding is known for its high spectral efficiency. It allows multiple users to share the same resources simultaneously, increasing the data rate and capacity of the communication system.
+\\
+\textbf{Successive Interference Cancellation (SIC):} SIC is often used in conjunction with superposition coding. It allows receivers to decode and subtract signals intended for other users in a specific order. By progressively canceling out the interference from other users, each receiver can extract its own intended signal. [4]
+\\
+\\
+\textbf{\large Successive Interference Cancellation (SIC):}
+\\
+Successive Interference Cancellation is a critical component of superposition coding and NOMA techniques. It is used at the receiver to mitigate the interference introduced by superposition coding. Here's a detailed explanation of SIC:
+\\
+\textbf{Order of Decoding:} SIC is based on the idea of decoding the signals in a specific order. Receivers prioritize signals with strong channel conditions and decode them first. This means that a user receiving a signal with good quality decodes its signal before users with weaker signals.
+\\
+\textbf{Decoding Process:} When a user decodes its signal, it subtracts the contribution of the decoded signal from the composite received signal. This process eliminates the interference from that specific signal.
+\\
+\textbf{Successive Steps:} The decoding and interference cancellation process is repeated iteratively. After canceling the first signal, the receiver moves on to the next signal in the predetermined order and repeats the decoding and interference cancellation steps.
+\\
+\textbf{Complexity:} SIC increases receiver complexity, especially when there are many users and signals to decode. However, it's a crucial technique to make superposition coding and NOMA effective.
+\\
+\textbf{Enhanced Spectral Efficiency:} SIC enables users to recover their intended signals while managing interference from other users. This leads to higher spectral efficiency, making it a valuable tool in scenarios with high user density. [4]
+\\
+\clearpage
+
+\chapter{\uppercase{advantages and disadvantages of NOMA}}
+
+\textbf{\large Advantages of NOMA:}
+\\
+\\
+\textbf{\normalsize Spectral Efficiency:}\\
+NOMA is highly efficient in terms of spectral utilization. It achieves strong spectral efficiency by enabling multiple users to share the same frequency resources. This means that the available spectrum is used optimally, allowing more data to be transmitted over the same bandwidth.\\
+\textbf{\normalsize Massive Connectivity:} \\
+NOMA facilitates connectivity for a large number of users simultaneously. It can efficiently serve a multitude of users, making it particularly suitable for scenarios with high user density, such as crowded urban areas or IoT (Internet of Things) deployments.
+\\
+\textbf{\normalsize Flexible Time Sharing:}\\
+NOMA allows for flexible time sharing among users. Unlike Orthogonal Multiple Access (OMA), where users are allocated organized time slots, NOMA allows for simultaneous communication within the same time frame. This flexibility enhances the efficiency of resource utilization.
+\\
+\textbf{\normalsize MIMO Enhancement:}\\
+NOMA is well-suited for implementation with Multiple-Input, Multiple-Output (MIMO) technology. MIMO involves using multiple antennas at both the transmitter and receiver, and NOMA's ability to efficiently manage multiple users makes it an ideal fit for enhancing system performance through MIMO.
+\\
+\\
+\\
+\\
+\textbf{\large Disadvantages of NOMA:}\\
+\\
+\textbf{\normalsize Complex Receiver Requirements:}\\
+NOMA's effectiveness relies on the receiver's ability to decode and separate the data of multiple users. In cases where some users have poor channel conditions, the receiver needs to invest additional effort in solving the details of each user's transmission. This complexity can pose challenges in the design and implementation of receiver systems.
+\\
+\textbf{\normalsize Error Propagation:}\\
+NOMA utilizes Successive Interference Cancellation (SIC) to separate and decode multiple users' signals. However, if an error occurs in the decoding process of one user, it can propagate to the decoding of subsequent users' data. This means that an error in one user's data can affect the accuracy of decoding for other users, potentially leading to a domino effect.
+\\
+\textbf{\normalsize Channel Gain Information Requirement:}\\
+NOMA relies on accurate channel gain information from each user to the Base Station (BS). Each user must provide precise information about their channel conditions. This requirement can be challenging to fulfill, as it demands constant and reliable feedback from a large number of users to maintain efficient NOMA operation.
+\\
+\\
+
+\chapter{\uppercase{system model}}
+\section{\textbf{ \large NON-ORTHOGONAL MULTIPLE ACCESS }}
+Non-Orthogonal Multiple Access (NOMA) plays a pivotal role in the 5G ecosystem, shaping the future of wireless communication. This broadcasting method is a beacon of innovation, particularly in transparent radiance technology, and is designed to increase throughput, transforming the way data is transmitted and received.
+
+In NOMA, the Base Station (BS) is the central mastermind, responsible for transmitting signals that are simultaneously accepted by User Equipment (UE) receivers. The beauty of NOMA lies in its ability to superimpose these transmitting signals, allowing multiple users to share the same frequency and time resources without the traditional constraints of orthogonal access methods.
+
+NOMA introduces a host of advantages that set it apart from conventional systems. One of its most significant advantages is its ability to support a multitude of users operating within a compact cell. By employing the fundamentals of Non-Orthogonal Multiple Access, 5G networks can efficiently accommodate a diverse range of users, from smartphones and IoT devices to industrial sensors, all coexisting harmoniously in a shared spectrum.
+
+NOMA is not just a broadcasting method; it's a paradigm shift in how we connect and communicate. By allowing multiple users to share resources in a non-orthogonal manner, NOMA optimizes spectral efficiency, enhances throughput, and opens the door to massive connectivity. This evolution in wireless technology is a driving force behind the next generation of communications, fostering an era of enhanced connectivity and seamless data transfer in the world of 5G.
+
+\begin{figure}[H]
+	\includegraphics[width=16cm]{system_model.jpg}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Communication System in NOMA [1]}
+	\vspace{0.3 cm}
+\end{figure}
+
+In Figure 6.1, a Base Station (BS) in a 5G network strategically selects two users: one in close proximity (user 1) and one at a considerable distance (user 2). The selection ensures a significant separation between the two users.
+User 1, being close to the BS, benefits from strong channel gain, while user 2, positioned farther away, experiences weaker channel gain. The BS employs an efficient power allocation strategy, assigning low power to the near-user (user 1) and high power to the far-user (user 2). This allocation is designed to optimize signal transmission, where high power is essential for user 2 to receive the signal effectively over the longer distance, while user 1 can suffice with lower power due to proximity.
+Both users simultaneously share the same time and frequency resources. However, this sharing leads to an interesting interference scenario. User 1, because of the favorable channel conditions, detects user 2's signal first, resulting in interference. User 1 applies a decoding process that involves subtracting this interference from the combined signal to recover its own data.
+As a consequence of this interference cancellation by user 1, the interference from user 2 is effectively removed. Subsequently, user 1 proceeds to decode its data from the remaining signal. On the other hand, user 2 decodes its signal under normal conditions but may experience a slight degree of extra interference.
+Crucially, user 2, due to its weaker signal strength, is unable to effectively cancel out the interference caused by user 1. This occurs because the interference from user 1 is stronger and interferes with user 2's signal [1].\\
+
+
+To make things more clear when the combined signal (the signal with both high and low power) , which includes both user1's and user2's signals, arrives at user1's receiver, it doesn't arrive as separate signals. That means Superposition Coding was performed at the transmitter that is base station.The receiver knows that the stronger part of the signal corresponds to user2's transmission, and the weaker part corresponds to user1's transmission. In other words, user1's receiver is aware that the stronger portion of the signal contains the interference from user2 because it was transmitted at a higher power.\\
+
+
+After recognizing which part of the signal corresponds to user2's transmission, user1's receiver proceeds to perform Successive Interference Cancellation(SIC). It first cancels out user2's signal, which is the stronger part, and what remains is user1's signal. This allows user1 to decode its own information accurately.
+
+\begin{figure}[H]
+	\includegraphics[width=16cm]{noma_model.jpg}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{ Basic NOMA applying SIC for UE receivers in downlink. [2]}
+	\vspace{0.3 cm}
+\end{figure}
+
+% Figure 6.2 illustrates the basic NOMA scheme applying Successive Interference Cancellation  for User Equipment (UE) receivers in the celluar downlink. For simplicity , we assume a two-UE case, a single transmitter, and a single receiver antenna. The overall system transmission bandwidth is assumed to be 1Hz. The base station transmits a signal for UE-i where (i = 1,2) , x_{i} , where  E[|x_{i}^2|] = 1, with transmission power P_{i}. The sum of P_{i} is restricted to P at maximum. In NOMA , x_{1} and x_{2} are superposition coded as :
+% \begin{equation*}x = \sqrt{P_1} x_1 + \sqrt{P_2} x_2\tag{i}\end{equation*} 
+
+Figure 6.2 illustrates the basic NOMA scheme applying Successive Interference
+Cancellation for User Equipment (UE) receivers in the cellular downlink. For
+simplicity, we assume a two-UE case, a single transmitter, and a single receiver
+antenna. The overall system transmission bandwidth is assumed to be 1 Hz.
+The base station transmits a signal for UE-i where (i = 1, 2), xi, where E[|xi2|] =
+1, with transmission power Pi. The sum of Pi is restricted to P at maximum. In NOMA,
+x1 and x2 are superposition coded as:
+\[
+x = \sqrt{P_1} x_1 + \sqrt{P_2} x_2
+\]
+The receiver signal at UEi is represented as:
+\[ y_i = h_i  x + w_i \]
+where h(i) is the complex channel coefficient between UEi and the base station. Term w(i) denotes the receiver Gaussian noise including Inter-Cell Interference. The Power Density of w(i) is N(0,i).
+\\
+In the context of NOMA downlink communication, the Successive Interference Cancellation (SIC) process is a pivotal component, executed at the User Equipment 
+receivers. The effectiveness of SIC relies on the order in which decoding takes place, a key factor for achieving interference cancellation.
+\\
+This decoding order is determined by considering the channel gain, which is normalized by the noise and inter-cell interference power, expressed as :
+\[ {{(h_i)^2} / }{{N_i}} \] Users decode the signals of others in the order specified by this criterion. If a user's decoding order precedes that of another user, they can successfully decode the signals of those users and perform interference cancellation. This is a fundamental aspect of NOMA.
+\\
+For example, let's consider a scenario with two UEs, UE-1 and UE-2. If \[{{(h_1)^2} / }{{N_1}} > {{(h_2)^2} / }{{N_2}}\], UE-1 has a higher priority in the decoding order. As a result, UE-2 refrains from interference cancellation because UE-1's decoding order comes first. UE-2 initially decodes x2 and eliminates its impact from the received signal y1. Consequently, UE-1 can decode x1 without encountering interference from x2 . [2]
+  
+\section{\textbf{\large OUTAGE}}
+In NOMA, information is conveyed by users, and the rate at which information is transmitted is a critical factor. Users explain their data at a rate that is sufficient to compensate for the latency introduced by the SIC process. SIC involves a sequential decoding process where each user's signal is decoded and interference is removed. This process can introduce some latency, so it's crucial for users to transmit their information at a rate that accounts for this latency while maintaining high spectral efficiency.
+Claude Shannon's Information Theory provides a fundamental concept for understanding the capacity of a communication channel. Shannon's theorem defines the capacity (C) of a channel in terms of the Signal-to-Noise Ratio (SNR) as follows:
+\begin{equation*}C=\log_{2}(1 + SNR) bits/sec   \tag{1}\end{equation*} 
+where\\
+\textbf{C}: Capacity of the channel, which represents the maximum data rate that can be reliably transmitted over the channel. In the context of NOMA, this can be the data rate of each user or the combined data rate for multiple users sharing the same resources.
+\\
+\textbf{SNR (Signal-to-Noise Ratio)}: A measure of the signal's power relative to the noise in the channel. A higher SNR allows for higher data rates.
+\\
+Shannon's capacity formula provides insights into spectral efficiency. Spectral efficiency is a measure of how efficiently a communication system uses available bandwidth to transmit data. In the context of NOMA, this capacity formula explains how the SNR affects the achievable data rate. NOMA's power allocation strategies aim to maximize the SNR for each user, ensuring that they can transmit data at high rates and achieve high spectral efficiency.
+\\
+It's important to note that Shannon's theorem defines the theoretical capacity of a channel. If the actual information rate (transmission rate) in a system exceeds the channel's capacity (as defined by Shannon), it can lead to an \textbf{"outage"}. Outage occurs when the system cannot maintain reliable communication due to excessive information rates. NOMA's success lies in managing power allocations and interference to avoid such outages while optimizing spectral efficiency.
+\\
+\begin{equation*}R_{b} > (1 + SNR) \tag{2}\end{equation*}
+Outage occurs when the channel's capacity, as defined by equation (2), falls short of the data rate required by the user, represented as Rb. In this context, Rb signifies the user's data transmission needs.
+\\
+->If Rb is much greater than (1 + SNR), it indicates that the system has a significant margin of data transmission capacity and that the signal is robust, relative to noise, allowing for a reliable data rate.
+\\
+->If Rb is just slightly greater than (1 + SNR), it suggests that the system is operating close to its capacity, and data transmission is relatively less robust but still possible.
+\\
+->If Rb is less than (1 + SNR), it implies that the data rate is insufficient to maintain reliable communication in the presence of noise. In such cases, there may be data transmission errors or an inability to maintain a connection.\\
+\\
+Outages lead to an increased likelihood of transmission errors and a decrease in data integrity. In Figure 4.2, the concept of outage is illustrated for both user 1 and user 2.
+\\
+R1 represents the data rate required by user 1, while R2 signifies the data rate needed by user 2. C1 and C2 represent the higher capacities relative to the channel coefficients h1 and h2 at user 1 and user 2, respectively.
+\\
+C1 denotes the maximum achievable capacity for user 1 when considering the channel coefficient h2 for user 2. This insight into capacity and channel characteristics is fundamental in understanding how outages impact the reliability and efficiency of data transmission in the system.
+\\
+\begin{figure}[H]
+	\includegraphics[width=11.8cm]{outage.jpg}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Outage State of User 1 and user 2 [1]}
+	\vspace{0.3 cm}
+\end{figure}
+
+The system consists of a base station (BTS), two terminals (T1 and T2), and a controller.
+\\
+The BTS monitors the signals from T1 and T2 and calculates their signal-to-noise ratios (SNRs). If the SNR of either terminal falls below a certain threshold, the BTS triggers an outage event.
+\\
+The controller then takes steps to mitigate the outage. For example, the controller may adjust the power levels of the terminals or change the transmission scheme.
+\\
+-> BTS X1: This is the base station that is monitoring the signals from T1 and T2.\\
+-> R1 > G1: This means that the received signal power at T1 is greater than the noise power.
+\\
+-> Outage occurs at terminal 1: This means that the SNR at T1 has fallen below a certain threshold.\\
+-> SNR1: This is the signal-to-noise ratio at T1.\\
+-> C1: This is the channel coefficient between T1 and the BTS.\\
+-> R1> C or R2> C2: This means that the received signal power at either T1 or T2 is greater than the channel coefficient between that terminal and the BTS.\\
+-> Outage occurs at terminal 2: This means that the SNR at T2 has fallen below a certain threshold.\\
+-> SNR2: This is the signal-to-noise ratio at T2.
+\\
+
+The controller takes steps to mitigate the outages at T1 and T2 by adjusting the power levels of the terminals or changing the transmission scheme. For example, the controller may increase the power level of T1 or switch T1 to a different transmission mode that is more robust to noise.
+\\
+The proposed system is designed to detect and mitigate outages in wireless networks in a timely and efficient manner. By monitoring the signals from terminals and adjusting the transmission parameters accordingly, the system can improve the reliability and performance of wireless networks.
+
+\chapter{\uppercase{Challenges of Non-Orthogonal Multiple Access}}
+
+\section{ \normalsize \textbf{NON-ORTHOGONAL MULTIPLE ACCESS IN WIRELESS POWER TRANSFER:}}
+Non-Orthogonal Multiple Access (NOMA) is a versatile technique, and its application extends to the realm of wireless power transfer. In particular, the concept of Simultaneous Wireless Information and Power Transfer (SWIPT) [1] plays a pivotal role in this synergy, where users not only receive information but also harness energy from the received signals.
+\\
+In the cooperative NOMA structure, a clever strategy is employed to address varying channel conditions. Users with weaker channels benefit from the support of users with stronger signals, effectively using the latter as relays. This cooperative approach optimizes the overall system performance. However, users who don't partake in relaying may utilize their energy resources, which can impact their battery life.
+\\
+The magic of SWIPT lies in its ability to offer a win-win scenario. In a NOMA setting, it's not limited to cooperative scenarios alone. In an uplink network, users have the remarkable capability to harvest power from the Base Station while simultaneously transmitting their data to the Base Station. This dual functionality is a testament to the flexibility and efficiency of Non-Orthogonal Multiple Access.
+\\
+So, whether it's about enhancing energy efficiency or boosting cooperative communications, NOMA and SWIPT present a compelling fusion of technologies, unlocking new possibilities in the world of wireless communications.
+
+\section{\normalsize \textbf{NON-ORTHOGONAL MULTIPLE ACCESS IN SAFETY PRECAUTIONS:}}
+
+Non-Orthogonal Multiple Access extends its significance into the realm of safety precautions in communication systems. These precautions revolve around the execution of Successive Interference Cancellation, a fundamental aspect of NOMA.
+\\
+When a single user decodes another user's message in NOMA, it's imperative to ensure that this process is carried out with the utmost safety and reliability. This entails employing sophisticated error-correction mechanisms, encryption, and interference management to safeguard the integrity of the transmitted data.
+\\
+Safety precautions are not exclusive to NOMA alone. In Time Division Multiple Access (TDMA) systems, for instance, users are allocated distinct time slots during which they transmit their data. These time slots are meticulously scheduled to ensure that different users' transmissions do not interfere with one another. This not only prevents data collisions but also contributes to the overall safety and reliability of the communication system.
+\\
+In essence, safety precautions in communication systems, whether in the context of NOMA or TDMA, are vital to guaranteeing the secure and accurate exchange of information in an increasingly interconnected world. These precautions are integral to maintaining the integrity and confidentiality of data in a multitude of communication scenarios.
+\\
+
+
+
+
+
+\chapter{\uppercase{Problem Formulation In NOMA }}
+
+\item {\textbf{\large{1. Receiver Complexity in Hardware:}}}
+\\
+Problem Formulation in NOMA often centers around the challenging issue of receiver complexity in hardware. This complexity primarily arises due to the Successive Interference Cancellation (SIC) process implemented in the receiver.
+\\
+The core objective of SIC is to enable the receiver to not only detect but also decode user symbols, even those transmitted at low power levels. This process is intricate as it necessitates the initial estimation and decoding of high-power symbols. It involves a considerable amount of computation, which can strain hardware resources.
+\\
+One of the inherent challenges is the limitation of battery-powered devices, especially when dealing with a high number of users and the requirement for rapid signal transmission. As the SIC process is repeatedly employed, it can lead to detection delays and increased energy consumption. In consumer devices where prolonged battery life is crucial, these complexities pose a significant hurdle.
+\\
+To mitigate this problem and optimize the application of NOMA in network scenarios, several strategies come into play. Users with similar characteristics or channel conditions can be grouped together, reducing the intricacies associated with SIC. Moreover, power allocation techniques are employed to ensure that users with more favorable conditions receive higher power levels for efficient data transmission.
+\\
+In essence, while NOMA holds immense potential for enhancing spectral efficiency and facilitating multi-user communication, it is essential to address the challenge of hardware receiver complexity. Finding a delicate balance between performance and energy efficiency becomes crucial for the successful deployment of NOMA in various communication scenarios.
+\\
+
+
+\item{\textbf{\large{2. The Performance of Generating Error in Successive Interference Cancellation:}}} 
+\\
+In NOMA, the receiver side prioritizes users with favorable channel conditions. This means that the primary received signals subjected to Successive Interference Cancellation are derived from the evaluation of multiple signals. However, NOMA introduces complexities, including issues related to timing offset and the specific characteristics of user equipment. These complexities can lead to error propagation within the Successive Interference Cancellation process, which can affect the accuracy of data decoding.\\
+\\
+To tackle this challenge, there's a need for improved broadcasting standards and adjustments to the primary sensor mechanisms. Enhancing the accuracy and efficiency of signal approximation is crucial in order to boost the overall performance of the system. These measures aim to minimize error propagation and ensure that NOMA remains a reliable and robust communication technique, even in scenarios with varying channel conditions and receiver complexities.
+
+\\
+
+\clearpage
+
+\chapter{\textbf{CONCLUSION}}
+
+In the realm of 5G wireless communication systems, Non-Orthogonal Multiple Access (NOMA) emerges as a beacon of promise and innovation. Its role in the landscape of 5G technology is pivotal, offering a dynamic solution to the increasing demands of modern communication. As 5G networks continue to evolve and reshape our connectivity, NOMA stands as a cornerstone technology with the potential to revolutionize the way we transmit and receive data.
+\\
+At its core, NOMA redefines the way multiple User Equipment (UEs) interact within the 5G ecosystem. It operates seamlessly alongside 5G Base Stations, allowing for the concurrent service of multiple users over the same frequency resources. The principles governing NOMA introduce a paradigm shift by prioritizing users with superior channel conditions, resulting in enhanced data throughput. This ensures that those with more favorable connections experience a boost in their data rates, aligning perfectly with the fundamental goals of 5G – speed, efficiency, and reliability.
+\\
+Spectral efficiency, a critical metric in the world of mobile networks, experiences a significant augmentation through NOMA. The technology excels when a multitude of users converge, each with distinct channel conditions and power allocations. In this scenario, where the demand for data volume is paramount, NOMA shines. It optimizes spectral efficiency, making the most of the available frequency resources, and ensures that the 5G network remains a steadfast and reliable platform for the ever-growing needs of our digital society.
+\\
+In conclusion, Non-Orthogonal Multiple Access (NOMA) emerges as a pivotal force in the ongoing 5G revolution. It seamlessly integrates into the 5G infrastructure, redefining how multiple users are served over shared frequency resources. By favoring those with superior channel conditions and enhancing spectral efficiency in data-rich environments, NOMA encapsulates the very essence of 5G – pushing the boundaries of what is possible in modern wireless communication. As 5G continues to unfold, NOMA will play a pivotal role in shaping the future of our interconnected world.
+
+% BIBLIOGRAPHY
+
+\addcontentsline{toc}{section}{{\textbf{BIBLIOGRAPHY}}}
+\renewcommand\bibname{BIBLIOGRAPHY}
+
+\begin{thebibliography}{1}
+\bibitem{main}
+Bipasha Patnaik, Arun Agarwal , Sabita Mali , Gourav Misra and Kabita Agarwal, ?A Review on Non-Orthogonal Multiple Access
+Technique for Emerging 5G Networks and Beyond ,? 
+        \textit{Proceedings of the International Conference on Smart Electronics and Communication , ICOSEC 2020
+IEEE Xplore Part Number: CFP20V90-ART; ISBN: 978-1-7281-5461-9}.
+
+
+\bibitem{paper2}
+Yuya Saito, Yoshihisa Kishiyama, Anass Benjebbour, Takehiro Nakamura , Anxin Li and  Kenichi Higuchi ,  ”Non-Orthogonal Multiple Access (NOMA) for Cellular Future Radio Access ,” \textit{2013 IEEE 77th Vehicular Technology Conference (VTC Spring)},Dresden, Germany, 2013, INSPEC Accession Number: 14023675 , ISBN:978-1-4673-6337-2 . 
+
+\bibitem{paper3}
+Mahmoud Aldababsa, Mesut Toka, Selahattin Gokceli, Gunes Karabulut Kurt and Oguz Kucur, ? 
+	A Tutorial on Nonorthogonal Multiple Access for 5G and Beyond,? \textit{ Wireless Communications and Mobile Computing}, vol. 2018, Article ID 9713450, 24 pages, 2018.
+\bibitem{paper4}
+Kartik Ramesh Patel, Sanjay Dasrao Deshmukh, \textit{"2S (Superposition Coding, Successive Interference Cancellation) Operations in NOMA Technology for 5G Networks: Review and Implementation"}, 2023 IEEE 8th International Conference for Convergence in Technology (I2CT), pp.1-6, 2023.
+
+
+
+\end{thebibliography}
+
+\end{spacing}
+\end{document}
